@@ -104,5 +104,15 @@ exports.deleteOneBook = (req, res, next) => {
         });
       }
     );
-  }
+}
+
+exports.bestThreeBooks = (req, res, next ) => {
+
+};
+
+exports.userRating = (req, res, next ) => {
+
+};
+
+
 
