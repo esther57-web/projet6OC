@@ -14,6 +14,7 @@ const mongoose = require('mongoose');
 //  averageRating : { type: Number, required: true }
 //});
 
+
 const bookSchema = mongoose.Schema({
   book: { type: String, required: true },
   image: { type: Buffer, required: true },
