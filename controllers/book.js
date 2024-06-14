@@ -4,7 +4,6 @@ const fs = require('fs');
 //Initialise la note moyenne du livre à 0 et le rating avec un tableau vide
 //redimentionnement des fichiers
 exports.createBook = (req, res, next) => {
-  console.log(req.body.book._id)
   const bookObject = JSON.parse(req.body.book);
   delete bookObject._id;
   delete bookObject._userId;
@@ -13,7 +12,7 @@ exports.createBook = (req, res, next) => {
       userId: req.auth.userId,
       imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   });
-
+  
   book.save()
   .then(() => { res.status(201).json({message: 'Objet enregistré !'})})
   .catch(error => { res.status(400).json( { error })})
@@ -100,11 +99,15 @@ exports.bestThreeBooks = (req, res, next ) => {
 //tableau "rating" afin de ne pas laisser un utilisateur
 // noter deux fois le même livre.
 // Il n’est pas possible de modifier une note.
-// La note moyenne "averageRating" doit être tenue à
+// La note moyen de "averageRating" doit être tenue à
 // jour, et le livre renvoyé en réponse de la requête.
 
 exports.userRating = (req, res, next ) => {
-
+  //console.log(req.body)
+  //const oneRating = req.body.rating
+  //delete oneRating._id
+  //delete oneRating._userId
+  
 };
 
 

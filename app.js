@@ -6,8 +6,7 @@ const path = require('path');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://esther57-web:kapucine9@projet6oc.fq0zlu1.mongodb.net/?retryWrites=true&w=majority&appName=projet6OC',
-  {useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://esther57-web:kapucine9@projet6oc.fq0zlu1.mongodb.net/?retryWrites=true&w=majority&appName=projet6OC')
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
