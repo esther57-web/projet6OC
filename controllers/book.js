@@ -1,5 +1,3 @@
-
-//const book = require('../models/book');
 const Book = require('../models/book');
 const fs = require('fs');
 
@@ -11,20 +9,11 @@ exports.createBook = (req, res, next) => {
   delete bookObject._userId;
   delete bookObject.ratings;
   delete bookObject.averageRating
-  //myRate = bookObject.ratings
   
-  /*function averageCalcul(ratings) {
-    const totalGrade = ratings.reduce((total, rate) => total + rate.grade, 0);
-    const average = totalGrade / ratings.length;
-    return average;
-  }
-
-  const averageRatingValue = averageCalcul(bookObject.ratings);*/
-
   const book = new Book({
       ...bookObject,
       userId: req.auth.userId,
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+      imageUrl: `${req.protocol}://${req.get('host')}/images/opt_${req.file.filename}`,
       ratings: [],
       averageRating: 0
   });
@@ -67,7 +56,7 @@ exports.getOneBook = (req, res, next) => {
   exports.updateBook = (req, res, next) => {
     const bookObject = req.file ? {
         ...JSON.parse(req.body.book),
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl: `${req.protocol}://${req.get('host')}/images/opt_${req.file.filename}`
     } : { ...req.body };
   
     delete bookObject._userId;
@@ -93,7 +82,7 @@ exports.getOneBook = (req, res, next) => {
               res.status(401).json({message: 'Not authorized'});
           } else {
               const filename = book.imageUrl.split('/images/')[1];
-              fs.unlink(`images/${filename}`, () => {
+              fs.unlink(`images/opt_${filename}`, () => {
                   Book.deleteOne({_id: req.params.id})
                       .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
                       .catch(error => res.status(401).json({ error }));
@@ -105,17 +94,9 @@ exports.getOneBook = (req, res, next) => {
       });
 };
 
-// L'ID de l'utilisateur et la note doivent être ajoutés au 
-//tableau "rating" afin de ne pas laisser un utilisateur
-// noter deux fois le même livre.
-// Il n’est pas possible de modifier une note.
-// La note moyen de "averageRating" doit être tenue à jour, et le livre renvoyé en réponse de la requête.
-
-
 exports.userRating = (req, res, next ) => {
   const oneRating = req.body
   delete oneRating._userId
-  //delete oneRating._id
   oneRating.userId = req.auth.userId
   function averageCalcul(ratings) {
     const totalGrade = ratings.reduce((total, rate) => total + rate.grade, 0);
