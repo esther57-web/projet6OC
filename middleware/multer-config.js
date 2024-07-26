@@ -35,7 +35,7 @@ const optimize = (req, res, next) => {
         const output = path.join('images', `opt_${req.file.filename}`); // where picture will be sent, and name
         sharp.cache(false);
         sharp(filePath)         
-            .resize({width: 412, height: 520,  fit: 'cover' }) // Resize picture
+            .resize({width: 412, height: 520, fit: 'cover' }) // Resize picture
             .webp({ quality: 85 })
             .toFile(output) // Upload new picture 
             .then(() => {
@@ -45,7 +45,6 @@ const optimize = (req, res, next) => {
                         return next(err);
                     }
                     req.file.path = output;
-                    console.log("image optimisée")
                     next();
                 });
             })

@@ -1,8 +1,6 @@
 const Book = require('../models/book');
 const fs = require('fs');
 
-//Initialise averageRating à 0 et le ratings avec un tableau vide
-// optimisation
 exports.createBook = (req, res, next) => {
   const bookObject = JSON.parse(req.body.book);
   delete bookObject._id;
