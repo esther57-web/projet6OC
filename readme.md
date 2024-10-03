@@ -13,6 +13,12 @@ Développement du back-end d'un site de notation de livres
 <li>Utilisation de Mongoose et du modèle MVC </li>
 </ul>
 
+# Spécifications API
+
+![alt text](readme/Capture%20d'écran%202024-10-03%20141631.png)
+
+![alt text](readme/Capture%20d'écran%202024-10-03%20155929.png)
+
 # Dépôt distant
 
 Lien Github : https://github.com/esther57-web/projet6OC.git
