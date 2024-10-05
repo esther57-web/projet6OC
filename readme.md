@@ -2,7 +2,7 @@
 
 Développement du back-end d'un site de notation de livres
 
-# Compétences
+# Compétences évaluées
 
 <ul>
 <li>Création d'un serveur Express</li>
